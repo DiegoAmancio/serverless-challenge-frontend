@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
-import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
+import { EmployeeDialogComponent } from '../../atoms/employee-dialog/employee-dialog.component';
+import { deleteEmployee, updateEmployee } from '../../../api/employee';
 
 export type Employee = {
+  Id: string;
   Nome: string;
   Cargo: string;
   Idade: string;
@@ -22,6 +24,7 @@ export class EmployeeCardsComponent {
     Cargo: '',
     Idade: ''
   }
+  @Input() deleteEmployeeFromList: any;
   constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
@@ -33,14 +36,12 @@ export class EmployeeCardsComponent {
     dialogRef.afterClosed().subscribe(result => {
       const { action, employee } = result
 
-      console.log('The dialog was closed');
-
       switch (action) {
         case 'update':
-          this.updateEmployee(employee)
+          this.updateEmployeeHandle(employee)
           break;
         case 'delete':
-          this.deleteEmployee()
+          this.deleteEmployeeHandle()
           break;
 
       }
@@ -48,15 +49,11 @@ export class EmployeeCardsComponent {
     });
   }
 
-  updateEmployee(employee: Employee) {
-    console.log(employee);
-
-    //chamar backend
+  updateEmployeeHandle(employee: Employee) {
+    updateEmployee(employee)
   }
 
-  deleteEmployee() {
-    console.log(this.employee);
-
-    //chamar backend
+  deleteEmployeeHandle() {
+    this.deleteEmployeeFromList(this.employee)
   }
 }
