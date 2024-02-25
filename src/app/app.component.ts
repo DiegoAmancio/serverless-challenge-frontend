@@ -59,6 +59,6 @@ export class AppComponent {
     })
   }
   ngOnInit() {
-    this.getEmployeesHandle()
+    //this.getEmployeesHandle()
   }
 }
