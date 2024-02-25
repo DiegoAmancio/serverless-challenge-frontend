@@ -11,7 +11,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ```bash
 $ npm install
 ```
-
+add backend url in baseURL - path src/app/api/baseURL.ts
+ 
 ## Git Steps
 
 ```bash
