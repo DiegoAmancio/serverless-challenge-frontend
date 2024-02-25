@@ -26,6 +26,8 @@
     width: 100%;
     justify-content: center;
     margin-top: 5vh;
+    height: 100%;
+    background-position: center;
   }
 </style>
 
@@ -37,6 +39,6 @@
     <app-employee-cards *ngFor="let employee of employees" [deleteEmployeeFromList]="deleteEmployeeFromList"
       [employee]="employee"></app-employee-cards>
   </div>
-
+  <app-floating-button [addEmployeeInList]="addEmployeeInList"></app-floating-button>
 </main>
 <router-outlet />

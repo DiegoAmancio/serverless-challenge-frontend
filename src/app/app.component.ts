@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { Employee, EmployeeCardsComponent } from "./components/molecules/employee-cards/employee-cards.component";
 import { getEmployees } from "./api/employee";
+import { FloatingButtonComponent } from "./components/molecules/floating-button/floating-button.component";
 
 
 @Component({
@@ -10,18 +11,21 @@ import { getEmployees } from "./api/employee";
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [RouterOutlet, EmployeeCardsComponent, CommonModule]
+  imports: [RouterOutlet, EmployeeCardsComponent, CommonModule, FloatingButtonComponent]
 })
 export class AppComponent {
   title = 'serverless-challenge-frontend';
-  employees = [];
+  employees: Employee[] = [];
 
   constructor() {
     this.deleteEmployeeFromList = this.deleteEmployeeFromList.bind(this)
-
+    this.addEmployeeInList = this.addEmployeeInList.bind(this)
   }
   deleteEmployeeFromList(deletedEmployee: Employee) {
     this.employees = this.employees.filter(({ Id }) => Id !== deletedEmployee.Id)
+  }
+  addEmployeeInList(employee: Employee) {
+    this.employees.push(employee)
   }
 
   getLastId = () => {
@@ -42,13 +46,6 @@ export class AppComponent {
   ngOnInit() {
 
     this.getEmployeesHandle()
-    // this.employees = [
-    //   {
-    //     "Cargo": "Software Engineer",
-    //     "Nome": "John",
-    //     "Id": "EMPLOYEE-60a8aa54-6cdd-4540-bc3d-83122b02c10b",
-    //     "Idade": "2122"
-    //   }
-    // ]
+
   }
 }

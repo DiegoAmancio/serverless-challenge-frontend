@@ -1,20 +1,24 @@
-<h2 mat-dialog-title>Detalhes do Funcionário</h2>
+<div style="display: flex; justify-content: center;">
+    <h2 style="padding: 0px;" mat-dialog-title>{{data.dialogLabel}}</h2>
+</div>
 <div mat-dialog-content class="dialog-content">
     <mat-form-field>
         <mat-label>Cargo</mat-label>
-        <input matInput [(ngModel)]="employee.Cargo">
+        <input matInput [(ngModel)]="data.employee.Cargo" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>Nome</mat-label>
-        <input matInput [(ngModel)]="employee.Nome">
+        <input matInput [(ngModel)]="data.employee.Nome" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>Idade</mat-label>
-        <input matInput [(ngModel)]="employee.Idade">
+        <input matInput [(ngModel)]="data.employee.Idade" />
     </mat-form-field>
 </div>
-<mat-dialog-actions [align]="'end'" jus>
-    <button mat-button (click)="onDelete()" style="margin-right: 35px;background-color: #eb3737;">Apagar</button>
+<mat-dialog-actions [align]="'end'">
+    <button *ngIf="data.showCancelButton" mat-button (click)="onDelete()"
+        style="margin-right: 10px;background-color: #eb3737;">Apagar</button>
     <button mat-button (click)="onCancel()">Cancelar</button>
-    <button mat-button (click)="onUpdate()" cdkFocusInitial>Atualizar</button>
+    <button mat-button [disabled]="!canConfirm()" (click)="onConfirm()"
+        cdkFocusInitial>{{data.confirmButtonLabel}}</button>
 </mat-dialog-actions>
