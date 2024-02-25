@@ -19,6 +19,5 @@
     <button *ngIf="data.showCancelButton" mat-button (click)="onDelete()"
         style="margin-right: 10px;background-color: #eb3737;">Apagar</button>
     <button mat-button (click)="onCancel()">Cancelar</button>
-    <button mat-button [disabled]="!canConfirm()" (click)="onConfirm()"
-        cdkFocusInitial>{{data.confirmButtonLabel}}</button>
+    <button mat-button [disabled]="!canConfirm()" (click)="onConfirm()">{{data.confirmButtonLabel}}</button>
 </mat-dialog-actions>
