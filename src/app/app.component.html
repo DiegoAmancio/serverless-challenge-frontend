@@ -1,41 +1,20 @@
-<style>
-  main {
-    width: 100%;
-    min-height: 100%;
-    background-color: #121D42;
-    box-sizing: inherit;
-  }
-
-  .header {
-    width: 100%;
-    text-align: center;
-    background-color: #FFFFFF;
-    padding: 1rem 0;
-  }
-
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
-    }
-  }
-
-  .content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
-    margin-top: 5vh;
-  }
-</style>
-
 <main class="main">
   <div class="header">
     <h1>{{title}}</h1>
   </div>
-  <div class="content">
-    <app-employee-cards *ngFor="let employee of employees" [employee]="employee"></app-employee-cards>
+  <div class="input-box">
+    <mat-form-field>
+      <mat-label>Filtre</mat-label>
+      <input matInput [(ngModel)]="inputValue" (input)="filterEmployeeByInput($event)">
+    </mat-form-field>
   </div>
-
+  <div class="content">
+    <app-employee-cards *ngFor="let employee of filteredEmployees" [deleteEmployeeFromList]="deleteEmployeeFromList"
+      [employee]="employee"></app-employee-cards>
+  </div>
+  <app-floating-button [addEmployeeInList]="addEmployeeInList"></app-floating-button>+
+  <div class="input-box">
+    <button mat-raised-button (click)="getEmployeesHandle()">Ver mais</button>
+  </div>
 </main>
 <router-outlet />
